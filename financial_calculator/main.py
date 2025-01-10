@@ -10,7 +10,7 @@ def goal_saving(mon): #This function is supposed to take how much the user wants
     goal_saving()
 
 def budget_calc(): 
-    pass
+    
     budget_calc()
 
 def sale_calc(price, sale): #This function is supposed to take the original price and multiply the percentage sale to calculate the real price.
@@ -33,7 +33,7 @@ if calc == "a" and "A":
     mon = int(input("How much money would you like to earn?"))
     print(f"This is how many days it would take to achieve your financial goal {calc}")
 if calc == "b" and "B":
-    pass
+    budget = input("What is your budget for the week?")
 if calc == "c" and "C":
     price = int(input("Type in the original price"))
     sale = int(input("Type in the sale percentage, but convert it into a decimal (50% = 0.5)"))
