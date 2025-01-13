@@ -1,4 +1,4 @@
-#Ethan Blanco, Finalcial Calculator
+#Ethan Blanco, Financial Calculator
 
 def main():
     while True:
@@ -36,8 +36,9 @@ if calc == "b" and "B":
     budget = input("What is your budget for the week?")
 if calc == "c" and "C":
     price = int(input("Type in the original price"))
-    sale = int(input("Type in the sale percentage, but convert it into a decimal (50% = 0.5)"))
-    print(f"Here's the converted price with the sale {calc}")
+    sale = float(input("Type in the sale percentage, but convert it into a decimal (50% = 0.5)"))
+    sale_calc
+    print(f"Here's the converted price with the sale")
 if calc == "d" and "D":
     cash = int(input("How much did you pay?"))
     print(f"This is much you're paying for tips {cash}")
