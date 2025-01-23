@@ -65,6 +65,4 @@ def main(): #Main menu for the personal library program. Allows the user to view
             print("This doesn't work")
         break 
 
-#Run the program 
-if __name__ == "__main__":
-    main()
+main() #Run the program
