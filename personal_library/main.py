@@ -8,11 +8,11 @@ def add_book(): #Adds a new book and its description to the library. Prompts the
     
     book_title = input("Enter the book title and author (e.g., Scythe, Neal Shusterman):\n") 
     if book_title in library:
-        return f"'{book_title}' is already in your library." 
-    book_description = input(f"Provide a brief description of '{book_title}' along with its genre:\n") 
-    library.add(book_title) 
-    genres[book_title] = book_description 
-    return f"Book added successfully! Here's your updated library: {library}" 
+        return f"'{book_title}' is already in your library."
+    book_description = input(f"Provide a brief description of '{book_title}' along with its genre:\n")
+    library.add(book_title)
+    genres[book_title] = book_description
+    return f"Book added successfully! Here's your updated library: {library}"
 
 add_book()
 
