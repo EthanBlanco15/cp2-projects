@@ -20,7 +20,7 @@ morsecode = ""
 
 def morse_translator(morse_alpha_conversion): #Used for translating the morse code into words.
     
-    morse_alpha_conversion = input("What morse code word would you like translated?")
+    morse_alpha_conversion = input("What morse code word would you like translated? Use capitalizations please")
 
 morse_translator()
 
