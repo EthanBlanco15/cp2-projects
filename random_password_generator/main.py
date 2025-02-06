@@ -28,6 +28,16 @@ def generate_password(length=12):
         random.choice(symbols)
     ]
 
+    password = [] #Checks for the needed requirements
+    if uppercase:
+        password.append(random.choice(string.ascii_uppercase))
+    if lowercase:
+        password.append(random.choice(string.ascii_lowercase))
+    if digits:
+        password.append(random.choice(string.digits))
+    if symbols:
+        password.append(random.choice(string.punctuation))
+
     # Fill the rest with random choices from all categories
     all_characters = lowercase + uppercase + digits + symbols
     remaining_chars = random.choices(all_characters, k=length - len(required_chars))
@@ -39,18 +49,29 @@ def generate_password(length=12):
     return ''.join(password_list)
 
 
+def gen_password_requirements():
+
+    while True:
+        requirement = input("What would you like your password to have?")
+        print("lowercase")
+        print("uppercase")
+        print("digits")
+        print("symbols")
+        requirement
+
+
 def check_password_strength(password):
 
  #Checks the strength of a given password and provides feedback.
     if len(password) < 8:
         return "Weak: Password is too short (minimum 8 characters)."
-    if not any(c.islower() for c in password):
+    elif not any(c.islower() for c in password):
         return "Weak: Missing a lowercase letter."
-    if not any(c.isupper() for c in password):
+    elif not any(c.isupper() for c in password):
         return "Weak: Missing an uppercase letter."
-    if not any(c.isdigit() for c in password):
+    elif not any(c.isdigit() for c in password):
         return "Weak: Missing a number."
-    if not any(c in "!@#$%^&*()-_=+" for c in password):
+    elif not any(c in "!@#$%^&*()-_=+" for c in password):
         return "Weak: Missing a special character."
     return "Strong: Password meets all security requirements."
 
@@ -79,7 +100,8 @@ def main():
         print("\nOptions:")
         print("1 - Generate a new password")
         print("2 - Check the strength of an existing password")
-        print("3 - Exit")
+        print("3 - Create a password with specific needs")
+        print("4 - Exit")
         
         choice = input("Select an option (1-3): ").strip()
         if choice == "1":
@@ -94,6 +116,8 @@ def main():
             else:
                 print("Password cannot be empty.")
         elif choice == "3":
+            gen_password_requirements()
+        elif choice == "4":
             print("\nThank you for using the Secure Password Generator. Stay safe!")
             break
         else:
