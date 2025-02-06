@@ -1,4 +1,4 @@
-#Ethan Blanco
+#Ethan Blanco, Simple Morse Code Translator
 
 # List of Morse Code translations (English letter -> Morse code)
 morse_code_list = [
