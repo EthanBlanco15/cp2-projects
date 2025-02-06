@@ -28,16 +28,6 @@ def generate_password(length=12):
         random.choice(symbols)
     ]
 
-    password = [] #Checks for the needed requirements
-    if uppercase:
-        password.append(random.choice(string.ascii_uppercase))
-    if lowercase:
-        password.append(random.choice(string.ascii_lowercase))
-    if digits:
-        password.append(random.choice(string.digits))
-    if symbols:
-        password.append(random.choice(string.punctuation))
-
     # Fill the rest with random choices from all categories
     all_characters = lowercase + uppercase + digits + symbols
     remaining_chars = random.choices(all_characters, k=length - len(required_chars))
