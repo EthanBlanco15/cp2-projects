@@ -1,7 +1,6 @@
 #Ethan Blanco, Random Password Generator
 
 import random
-
 import string
 
 
@@ -18,6 +17,7 @@ def generate_password(length=12):
     uppercase = string.ascii_uppercase
     digits = string.digits
     symbols = "!@#$%^&*()-_=+"
+    char = ""
 
     # Ensure at least one character from each category
 
@@ -47,7 +47,8 @@ def gen_password_requirements():
         print("uppercase")
         print("digits")
         print("symbols")
-        requirement
+        if requirement == "lowercase":
+            requirement += random.choice(lowercase)
 
 
 def check_password_strength(password):
