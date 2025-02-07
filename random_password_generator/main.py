@@ -4,116 +4,80 @@ import random
 import string
 
 
+def get_password_requirements():
 
-def generate_password(length=12):
+    #Asks the user for password settings and ensures valid input.
+    print("\nPassword Requirements (y/n):")
+    use_uppercase = input("Include uppercase letters? ").strip().lower() == 'y'
+    use_lowercase = input("Include lowercase letters? ").strip().lower() == 'y'
+    use_numbers = input("Include numbers? ").strip().lower() == 'y'
+    use_special = input("Include special characters? ").strip().lower() == 'y'
 
-    #Generates a strong password of the given length.
+    if not (use_uppercase or use_lowercase or use_numbers or use_special):
+        print("Error: Select at least one character type.\n")
+        return get_password_requirements()  
 
-    if length < 8:
-
-        raise ValueError("Password must be at least 8 characters long.")
-    # Character groups
-    lowercase = string.ascii_lowercase
-    uppercase = string.ascii_uppercase
-    digits = string.digits
-    symbols = "!@#$%^&*()-_=+"
-    char = ""
-
-    # Ensure at least one character from each category
-
-    required_chars = [
-        random.choice(lowercase),
-        random.choice(uppercase),
-        random.choice(digits),
-        random.choice(symbols)
-    ]
-
-    # Fill the rest with random choices from all categories
-    all_characters = lowercase + uppercase + digits + symbols
-    remaining_chars = random.choices(all_characters, k=length - len(required_chars))
+    return use_uppercase, use_lowercase, use_numbers, use_special
 
 
-    # Combine required and remaining characters, then shuffle
-    password_list = required_chars + remaining_chars
-    random.shuffle(password_list)
-    return ''.join(password_list)
+def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special):
 
+    #Creates a random password based on user preferences.
+    char_types = {
+        "uppercase": string.ascii_uppercase if use_uppercase else "",
+        "lowercase": string.ascii_lowercase if use_lowercase else "",
+        "numbers": string.digits if use_numbers else "",
+        "special": "!@#$%^&*()-_=+[]{}|;:,.<>?/~`" if use_special else ""
+    }
 
-def gen_password_requirements():
+    all_chars = "".join(char_types.values())
+    if not all_chars:
+        raise ValueError("Error: No character types selected.")
 
-    while True:
-        requirement = input("What would you like your password to have?")
-        print("lowercase")
-        print("uppercase")
-        print("digits")
-        print("symbols")
-        if requirement == "lowercase":
-            requirement += random.choice(lowercase)
+    # Ensure at least one character from each chosen type
+    password = [random.choice(chars) for chars in char_types.values() if chars]
+    password += random.choices(all_chars, k=length - len(password))
+    random.shuffle(password)
+
+    return ''.join(password)
 
 
 def check_password_strength(password):
 
- #Checks the strength of a given password and provides feedback.
-    if len(password) < 8:
-        return "Weak: Password is too short (minimum 8 characters)."
-    elif not any(c.islower() for c in password):
-        return "Weak: Missing a lowercase letter."
-    elif not any(c.isupper() for c in password):
-        return "Weak: Missing an uppercase letter."
-    elif not any(c.isdigit() for c in password):
-        return "Weak: Missing a number."
-    elif not any(c in "!@#$%^&*()-_=+" for c in password):
-        return "Weak: Missing a special character."
-    return "Strong: Password meets all security requirements."
+    #Rates password strength as Weak, Medium, or Strong.
+    has_upper = any(char.isupper() for char in password)
+    has_lower = any(char.islower() for char in password)
+    has_digit = any(char.isdigit() for char in password)
+    has_special = any(char in "!@#$%^&*()-_=+[]{}|;:,.<>?/~`" for char in password)
+    criteria_met = sum([has_upper, has_lower, has_digit, has_special])
 
-
-def get_valid_password_length():
-
-    #Asks the user for a valid password length and ensures proper input handling.
-    while True:
-        try:
-            length = int(input("\nEnter the desired password length (minimum 8): "))
-            if length < 8:
-                print("Password must be at least 8 characters long.")
-                continue
-            else:
-                return length
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-
-
-def main():
-
-    #Main function providing a user-friendly interface for password generation and checking.
-    print("\nWelcome to the Secure Password Generator")
-
-    while True:
-        print("\nOptions:")
-        print("1 - Generate a new password")
-        print("2 - Check the strength of an existing password")
-        print("3 - Create a password with specific needs")
-        print("4 - Exit")
-        
-        choice = input("Select an option (1-3): ").strip()
-        if choice == "1":
-            length = get_valid_password_length()
-            password = generate_password(length)
-            print(f"\nGenerated Password: {password}")
-            print("Strength:", check_password_strength(password))
-        elif choice == "2":
-            password = input("\nEnter a password to check its strength: ").strip()
-            if password:
-                print("Strength:", check_password_strength(password))
-            else:
-                print("Password cannot be empty.")
-        elif choice == "3":
-            gen_password_requirements()
-        elif choice == "4":
-            print("\nThank you for using the Secure Password Generator. Stay safe!")
-            break
-        else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
-# Run the program
+    if len(password) >= 12 and criteria_met == 4:
+        return "Strong"
+    elif len(password) >= 8 and criteria_met >= 3:
+        return "Medium"
+    return "Weak"
 
 if __name__ == "__main__":
-    main()
+    print("===== Secure Password Generator =====")
+    try:
+        # Get valid password length
+        while True:
+            try:
+                length = int(input("\nEnter password length (min 4): "))
+                if length >= 4:
+                    break
+                print("Error: Minimum length is 4.")
+            except ValueError:
+                print("Error: Enter a valid number.")
+        # Get password requirements
+        use_uppercase, use_lowercase, use_numbers, use_special = get_password_requirements()
+        # Generate and evaluate password
+        password = generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special)
+        strength = check_password_strength(password)
+        # Display results
+        print("\n===== Password Generated =====")
+        print(f"Password: {password}")
+        print(f"Strength: {strength}\n")
+
+    except ValueError as error:
+        print(error)
