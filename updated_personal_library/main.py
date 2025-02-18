@@ -1,24 +1,19 @@
 #Ethan Blanco, Updated Personal Library
 
 # Initialize library and genre database 
-"""
-library_dict = {{"Harry Potter-Philosophers Stone":
-                
+
+library_dict = {"Harry Potter-Philosophers Stone":
+                {
                 "author": "J. K. Rowling",
                 "genre": "Harry Potter is a comedy book about wizardry",
                 "pages": "309"}
-                {
-                "Wonder":
-                "author": "R. J. Palacio"
-                "genre": "Wonder is a fiction book about individuality"
                 }
-                }"""
 genres = { "Harry Potter, by J. K. Rowling": "Harry Potter is a comedy book about wizardry", "Wonder, R. J. Palacio": "Wonder is a fiction book about individuality", "The Amazing Spider-Man, Stan Lee": "The Amazing Spider-Man is an action book about balance" } 
 
 def add_book():
 
     #Adds a new book and its description to the library. Prompts the user to input a book title, author, and a brief description with its genre.
-    book_title = input("Enter the book title and author (e.g., Scythe, Neal Shusterman):\n") 
+    book_title = input("Enter the book title and author (e.g., Scythe, Neal Shusterman):\n")
     if book_title in library_dict:
         return f"'{book_title}' is already in your library."
     book_description = input(f"Provide a brief description of '{book_title}' along with its genre:\n")
@@ -67,7 +62,7 @@ def main(): #Main menu for the personal library program. Allows the user to view
             2. Add a book 
             3. Remove a book 
             4. Search your library 
-            5. Exit Enter your choice:\n""")) 
+            5. Exit\n""")) 
         if choice == 1: 
                 library_def()
         elif choice == 2: 
