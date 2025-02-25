@@ -52,7 +52,7 @@ def main():
     movies = load_movies(filename)
     if not movies:
         print("No movies loaded. Please check the file and try again.")
-        return
+        return 
 
     print("Welcome to the Movie Recommender!")
     while True:
@@ -91,4 +91,4 @@ def main():
             continue
         results = filter_movies(movies, filters)
         display_movies(results)
-    main()
+main()
