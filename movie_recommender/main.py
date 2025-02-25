@@ -1,88 +1,79 @@
 #Ethan Blanco, Movie Recommender
 
-import pandas as pd
-#Load the dataset
+import csv
 
-df = pd.movie_recommender/movies.csv("movies.csv")
-df["Length (min)"] = pd.to_numeric(df["Length (min)"], errors="coerce")
-#Ensure 'Length (min)' is properly converted to numeric values (handling errors)
+#Load movies from the CSV file
+def load_movies(filename):
+    movies = []
+    with open(filename, mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            movies.append(row)
+    return movies
 
-def display_full_list():
-
-    #Displays the entire movie list.
-    print("\nFull Movie List:")
-    print(df.to_string(index=False))
-
-
-def recommend_movies():
-
-    #Provides movie recommendations based on at least two selected filters.
-    print("\nMovie Recommender")
-    print("Choose at least two filters: Genre, Director, Length, or Actor.")
-
-    #Available filters
-    filters = {
-        "1": "Genre",
-        "2": "Director",
-        "3": "Length (max runtime in minutes)",
-        "4": "Actor"
-    }
-
-    #Display filter options
-    print("\nAvailable filters:")
+#Filter movies based on user preferences
+def filter_movies(movies, filters):
+    filtered_movies = movies
     for key, value in filters.items():
-        print(f"{key}: {value}")
+        filtered_movies = [movie for movie in filtered_movies if value.lower() in movie[key].lower()]
+    return filtered_movies
 
-    #User selects at least two filters
-    selected_filters = []
-    while len(selected_filters) < 2:
-        choices = input("\nEnter at least two filter numbers, separated by spaces (e.g., 1 3): ").split()
-        selected_filters = [filters.get(choice) for choice in choices if choice in filters]
+#Display movies in a formatted way
+def display_movies(movies):
+    if not movies:
+        print("\nNo movies match your filters.")
+        return
+    print("\nRecommended Movies:")
+    for movie in movies:
+        print(f"- {movie['Title']} ({movie['Director']}, {movie['Genre']}, {movie['Length (min)']} min)")
 
-        if len(selected_filters) < 2:
-            print("Invalid selection. You must select at least two filters.")
+#Main function to run the program
+def main():
+    filename = "movies.csv"  # Change this if your file has a different name
+    movies = load_movies(filename)
+    print("Welcome to the Movie Recommender!")
+    while True:
+        print("\nChoose at least two filters to refine your search:")
+        print("1. Genre")
+        print("2. Director")
+        print("3. Length (min)")
+        print("4. Notable Actors")
+        print("5. Print full movie list")
+        print("6. Exit")
 
-    #Collect user input for selected filters
-    filter_values = {}
-    for filter_type in selected_filters:
-        value = input(f"Enter a value for {filter_type} (or leave blank to skip): ").strip().lower()
-        if value:
-            filter_values[filter_type] = value
+        choice = input("\nEnter your choice (separate by commas, e.g., 1,3): ").split(',')
+        choice = [c.strip() for c in choice]
 
-    #Apply filters
-    filtered_df = df.copy()
+        if "6" in choice:
+            print("Goodbye!")
+            break
 
-    if "Genre" in filter_values:
-        filtered_df = filtered_df[filtered_df["Genre"].str.lower().str.contains(filter_values["Genre"], na=False, regex=False)]
-    if "Director" in filter_values:
-        filtered_df = filtered_df[filtered_df["Director"].str.lower().str.contains(filter_values["Director"], na=False, regex=False)]
-    if "Length (max runtime in minutes)" in filter_values and filter_values["Length (max runtime in minutes)"].isdigit():
-        max_length = int(filter_values["Length (max runtime in minutes)"])
-        filtered_df = filtered_df[filtered_df["Length (min)"] <= max_length]
-    if "Actor" in filter_values:
-        filtered_df = filtered_df[filtered_df["Notable Actors"].str.lower().str.contains(filter_values["Actor"], na=False, regex=False)]
+        if "5" in choice:
+            display_movies(movies)
+            continue
 
-    #Display results
-    if filtered_df.empty:
-        print("\nNo movies match the selected criteria.")
-    else:
-        print("\nRecommended Movies:")
-        print(filtered_df[["Title", "Director", "Genre", "Rating", "Length (min)", "Notable Actors"]].to_string(index=False))
+        filters = {}
+        if "1" in choice:
+            genre = input("Enter the genre: ")
+            filters["Genre"] = genre
+        if "2" in choice:
+            director = input("Enter the director's name: ")
+            filters["Director"] = director
+        if "3" in choice:
+            length = input("Enter maximum movie length (in minutes): ")
+            try:
+                filters["Length (min)"] = str(int(length))  # Ensure input is a valid number
+            except ValueError:
+                print("Invalid length input. Please enter a number.")
+                continue
+        if "4" in choice:
+            actor = input("Enter the actor's name: ")
+            filters["Notable Actors"] = actor
 
-#Main menu
-while True:
-    print("\nMovie Recommendation System")
-    print("1: Get Movie Recommendations")
-    print("2: Print Full Movie List")
-    print("3: Exit")
+        if len(filters) < 2:
+            print("\nPlease select at least two filters.")
+            continue
 
-    choice = input("Enter your choice: ").strip()
-    if choice == "1":
-        recommend_movies()
-    elif choice == "2":
-        display_full_list()
-    elif choice == "3":
-        print("Goodbye!")
-        break
-    else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        results = filter_movies(movies, filters)
+        display_movies(results)
+    main()
