@@ -1,11 +1,12 @@
 #Ethan Blanco, Movie Recommender
 
 #Load movie data into a list of dictionaries
-movies = []
+
 import csv
+movies = []
 #Read data from 'movies.csv' file
 
-with open('movie_recommender/movies.csv', 'r') as file:
+with open('movie_recommender/Movies list.csv', 'r') as file:
     reader = csv.DictReader(file,fieldnames=["Title", "Director", "Genre", "Rating", "Length", "Actors"])
     next(reader)  # Read the headers
     for row in reader:
@@ -45,7 +46,7 @@ def print_movie_list(movie_list):
         print(f"Genre: {movie['Genre']}")
         print(f"Rating: {movie['Rating']}")
         print(f"Length: {movie['Length']} min")
-        print(f"Notable Actors: {', '.join(movie['Actors'])}")
+        print(f"Notable Actors: {movie['Actors']}")
         print('-' * 40)
 
 #Main menu
@@ -76,4 +77,4 @@ def main():
         else:
             print("Invalid option. Please choose again.")
 #Run the program
-    main()
+main()
