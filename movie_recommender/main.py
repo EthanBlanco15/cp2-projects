@@ -3,6 +3,7 @@
 #Load movie data into a list of dictionaries
 movies = []
 
+import csv
 #Read data from 'movies.csv' file
 
 with open('movie_recommender\movies.csv', 'r') as file:
