@@ -5,17 +5,17 @@ movies = []
 import csv
 #Read data from 'movies.csv' file
 
-with open('movie_recommender\movies.csv', 'r') as file:
-    reader = csv.reader(file)
-    headers = next(reader)  # Read the headers
+with open('movie_recommender/movies.csv', 'r') as file:
+    reader = csv.DictReader(file,fieldnames=["Title", "Director", "Genre", "Rating", "Length", "Actors"])
+    next(reader)  # Read the headers
     for row in reader:
         movies.append({
-            'Title': row[0],
-            'Director': row[1],
-            'Genre': row[2],
-            'Rating': row[3],
-            'Length': int(row[4]),  # Convert length to integer
-            'Actors': row[5:]  # Remaining values are actors
+            'Title': row["Title"],
+            'Director': row["Director"],
+            'Genre': row["Genre"],
+            'Rating': row["Rating"],
+            'Length': row["Length"],  # Convert length to integer
+            'Actors': row["Actors"]  # Remaining values are actors
         })
 
 #Function to filter movies based on given criteria
