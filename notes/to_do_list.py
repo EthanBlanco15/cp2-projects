@@ -3,7 +3,7 @@
 #Create a program that allows the user to view, add, delete, and mark tasks on a to do list that is saved on a seperate text file. 
 
 #REQUIREMENTS:
-#Create a to do list (Kept on a txt file)
+#Create the to do list (Kept on a txt file)
 #Add items to the to do list
 #Mark item as complete
 #Delete item from to do list
@@ -13,11 +13,11 @@ import os
 # Define file path
 folder = "to_do_list.py"
 file_name = "to_do_list.txt"
-file_path = os.path.join(FOLDER_NAME, FILE_NAME)
+file_path = os.path.join(folder, file_name)
 
 # Ensure the folder and file exist
-if not os.path.exists(FOLDER_NAME):
-    os.makedirs(FOLDER_NAME)
+if not os.path.exists(folder):
+    os.makedirs(folder)
 
 if not os.path.exists(FILE_PATH):
     with open(FILE_PATH, "w") as f:
