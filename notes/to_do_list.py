@@ -11,9 +11,9 @@
 import os
 
 # Define file path
-FOLDER_NAME = "ToDoList V2"
-FILE_NAME = "ToDoList.txt"
-FILE_PATH = os.path.join(FOLDER_NAME, FILE_NAME)
+folder = "to_do_list.py"
+file_name = "to_do_list.txt"
+file_path = os.path.join(FOLDER_NAME, FILE_NAME)
 
 # Ensure the folder and file exist
 if not os.path.exists(FOLDER_NAME):
