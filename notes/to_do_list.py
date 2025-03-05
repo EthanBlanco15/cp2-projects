@@ -9,18 +9,18 @@
 
 import os
 
-# Define file path
+#Define file path, notes\to_do_list.txt
 folder = "to_do_list.py"
 file_name = "to_do_list.txt"
 file_path = os.path.join(folder, file_name)
 
-# Ensure the folder and file exist
+#Ensure the folder and file exist
 if not os.path.exists(folder):
     os.makedirs(folder)
 
 if not os.path.exists(file_path):
     with open(file_path, "w") as f:
-        pass  # Create an empty file
+        pass  #Create an empty file
 
 def load_tasks():
     #Load tasks from file into a list.
@@ -49,7 +49,7 @@ def add_task():
     task = input("Enter the new task: ")
     if task:
         tasks = load_tasks()
-        tasks.append("[ ] " + task)  # Unmarked task
+        tasks.append("[ ] " + task)  #Unmarked task
         save_tasks(tasks)
         print("Task added!\n")
     else:

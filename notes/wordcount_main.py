@@ -17,3 +17,6 @@ def main():
     except FileNotFoundError:
         print("Error: File not found. Please check the file name and try again.")
     main()
+
+#notes\wordcount_file.py
+#notes\wordcount_time.py
