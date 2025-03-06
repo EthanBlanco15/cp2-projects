@@ -16,6 +16,7 @@ def main():
 
     except FileNotFoundError:
         print("Error: File not found. Please check the file name and try again.")
+if __name__ == "__main__":
     main()
 
 #word_counter\file.py
