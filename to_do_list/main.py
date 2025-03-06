@@ -9,8 +9,8 @@
 
 import os
 
-#Define file path, notes\to_do_list.txt
-folder = "to_do_list.py"
+#Define file path, to_do_list.py\to_do_list.txt
+folder = "to_do_list"
 file_name = "to_do_list.txt"
 file_path = os.path.join(folder, file_name)
 
