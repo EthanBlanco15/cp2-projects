@@ -119,4 +119,5 @@ def main():
             break
         else:
             print("This doesn't work, try to enter a number between 1-5 next time.\n")
+if __name__ == "__main__":
     main()
