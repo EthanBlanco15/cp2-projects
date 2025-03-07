@@ -2,8 +2,8 @@ import file
 import time
 
 def main():
-    file_name = input("Enter the file name: ")
 
+    file_name = input("Enter the file name: ")
     try:
         content = file.read_file(file_name)
         word_count = file.count_words(content)
@@ -16,8 +16,9 @@ def main():
 
     except FileNotFoundError:
         print("Error: File not found. Please check the file name and try again.")
+
 if __name__ == "__main__":
+
     main()
 
-#word_counter\file.py
-#word_counter\time.py
+#C:\Users\ethan.blanco\Documents\test.txt
