@@ -23,4 +23,5 @@ if __name__ == "__main__": #To check if the function can run and is true.
 
     main()
 
+#Use this text below to test the code.
 #C:\Users\ethan.blanco\Documents\test.txt
