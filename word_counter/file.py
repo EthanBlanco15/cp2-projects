@@ -7,7 +7,7 @@ def count_words(content):
     #Counts words in the given text.
     return len(content.split())
 
-def append_metadata(content, word_count, timestamp):
+def append_metadata(content, word_count, times):
     #Appends or updates word count and timestamp in the content.
     lines = content.strip().split("\n")
     
@@ -15,7 +15,7 @@ def append_metadata(content, word_count, timestamp):
         lines = lines[:-2]  #Remove previous word count and timestamp
     
     lines.append(f"Word Count: {word_count}")
-    lines.append(f"Last Updated: {timestamp}")
+    lines.append(f"Last Updated: {times}")
 
     return "\n".join(lines)
 
