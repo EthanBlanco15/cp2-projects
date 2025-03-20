@@ -5,7 +5,7 @@ import random
 
 CHARACTER_FILE = "players.csv"
 
-def main(): # The first thing the user sees, it allows you to create chracters and view them, start a battle and leave by inputting numbers
+def main(): # The first thing the user sees, it allows you to create players and view them, start a battle and leave by inputting numbers
 
     #Main menu for RPG Player Management and Battle System.
     while True:
