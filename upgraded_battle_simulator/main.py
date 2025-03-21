@@ -118,12 +118,12 @@ def rand_player_gen():
 
 def player_analysis():
 
-    print("This isn't available currently.\n")
+    print("\nThis isn't available currently.")
 
 
 def player_visualization():
 
-    print("There is nothing here at the moment.")
+    print("\nThere is nothing here at the moment.")
 
 
 def battle_system(): # Players can fight each other if they are saved and loaded
