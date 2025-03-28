@@ -2,6 +2,7 @@
 import csv
 import os
 import random
+from faker import Faker
 
 #
 #
@@ -10,6 +11,7 @@ import random
 #
 
 CHARACTER_FILE = "player.csv"
+fake = Faker()
 
 def main(): # The first thing the user sees, it allows you to create players and view them, start a battle and leave by inputting numbers
 
@@ -24,7 +26,6 @@ def main(): # The first thing the user sees, it allows you to create players and
         print("6. Player Visualization.")
         print("7. Exit")
         decision = input("Enter your decision: ").strip()
-
         if decision == "1":
             create_player()
         elif decision == "2":
@@ -43,32 +44,43 @@ def main(): # The first thing the user sees, it allows you to create players and
         else:
             print("Invalid decision. Please enter a number between 1 and 4.")
 
-def create_player(): # This function creates a player, you choose their name, health, strength, defense, and speed
-
-    #Creates a new player and saves it to a CSV file.
+def create_player():
+    # Creates a new player and saves it to a CSV file.
     def get_valid_input(prompt, min_value=1, max_value=100):
-        
-        #Helper function to get valid integer input within a range.
+        # Helper function to get valid integer input within a range.
         while True:
             try:
                 value = int(input(prompt))
                 if min_value <= value <= max_value:
                     return value
-                else:
+                else: # Error message
                     print(f"Please enter a value between {min_value} and {max_value}.")
-            except ValueError:
+            except ValueError: # Error message
                 print("Invalid input. Please enter a number.")
 
     print("\nCreate a New Player")
-    name = input("Enter player name: ").strip()
-    health = get_valid_input("Enter Health (50-200): ", 50, 200)
-    strength = get_valid_input("Enter Strength (5-50): ", 5, 50)
-    defense = get_valid_input("Enter Defense (5-50): ", 5, 50)
-    speed = get_valid_input("Enter Speed (1-20): ", 1, 20)
-    level = 1
+    use_random = input("Generate a random player? (yes/no): ").strip().lower()
+    # The process of making a character, this allwos you to generate a random character with info
+    if use_random == "yes":
+        name = fake.name()
+        description = fake.sentence()
+        health = random.randint(50, 200)
+        strength = random.randint(5, 50)
+        defense = random.randint(5, 50)
+        speed = random.randint(1, 20)
+    else: # The other option allows you to create your character with a name, description, health points, strength, defense, and speed
+        name = input("Enter player name: ").strip()
+        description = input("Enter player description: ").strip()
+        health = get_valid_input("Enter Health (50-200): ", 50, 200)
+        strength = get_valid_input("Enter Strength (5-50): ", 5, 50)
+        defense = get_valid_input("Enter Defense (5-50): ", 5, 50)
+        speed = get_valid_input("Enter Speed (1-20): ", 1, 20)
+    # Level and experience cannot be changed by user input
+    level = 1   # All characters start with level 1 and 0 experience
     experience = 0
-    # With every new player, they always start with one level and zero experience
-    player = [name, health, strength, defense, speed, level, experience]
+
+    # Saves the players info
+    player = [name, description, health, strength, defense, speed, level, experience]
     save_player(player)
     print(f"Player '{name}' created successfully!")
 
@@ -80,7 +92,7 @@ def save_player(player): # Every new player is saved onto a csv file
     with open(CHARACTER_FILE, "a", newline="") as file:
         writer = csv.writer(file)
         if not file_exists:
-            writer.writerow(["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"])
+            writer.writerow(["Name", "Description", "Health", "Strength", "Defense", "Speed", "Level", "Experience"])
         writer.writerow(player)
 
 def load_players(): # Saved players can be loaded to be viewed or brought to battle
