@@ -118,7 +118,14 @@ def rand_player_gen():
 
 def player_analysis():
 
-    print("\nThis isn't available currently.")
+    #Performs statistical analysis on character attributes.
+    df = load_players()
+    if df.empty:
+        return
+
+    print("\nCharacter Statistics:")
+    stats = df[["Health", "Strength", "Defense", "Speed"]].describe()
+    print(stats)
 
 
 def player_visualization():
