@@ -1,53 +1,52 @@
 #Ethan Blanco, Upgrading Battle Simulator
+
+
 import csv
 import os
 import random
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 from faker import Faker
 
-#
-#
-#Needs new requirements
-#
-#
-
-CHARACTER_FILE = "player.csv"
+PLAYER_FILE = "players.csv"
 fake = Faker()
 
-def main(): # The first thing the user sees, it allows you to create players and view them, start a battle and leave by inputting numbers
-
-    #Main menu for RPG Player Management and Battle System.
+def main():
+    #Main menu Battle Simulator, allows you to create and view the players in different ways, then taking them to battle.
     while True:
         print("\nBattle Simulator")
         print("1. Create Player")
-        print("2. View Players")
+        print("2. View All Players")
         print("3. Start Battle")
-        print("4. Random Player Generation")
-        print("5. Player Data Analysis.")
-        print("6. Player Visualization.")
-        print("7. Exit")
-        decision = input("Enter your decision: ").strip()
-        if decision == "1":
+        print("4. Player Statistics")
+        print("5. Visualize a Players Stats")
+        print("6. Exit")
+
+        # Gets user choice
+        choice = input("Enter your choice: ").strip()
+
+        # Processes user choice
+        if choice == "1":
             create_player()
-        elif decision == "2":
+        elif choice == "2":
             display_players()
-        elif decision == "3":
+        elif choice == "3":
             battle_system()
-        elif decision == "4":
-            rand_player_gen()
-        elif decision == "5":
-            player_analysis()
-        elif decision == "6":
+        elif choice == "4":
+            analyze_players()
+        elif choice == "5":
             player_visualization()
-        elif decision == "7":
+        elif choice == "6":
             print("Goodbye!")
             break
-        else:
-            print("Invalid decision. Please enter a number between 1 and 4.")
+        else: #Error Mesage
+            print("Invalid choice. Please enter a number between 1 and 6.")
 
 def create_player():
-    # Creates a new player and saves it to a CSV file.
+    #Creates a new player and saves it to a CSV file.
     def get_valid_input(prompt, min_value=1, max_value=100):
-        # Helper function to get valid integer input within a range.
+        #Helper function to get valid integer input within a range.
         while True:
             try:
                 value = int(input(prompt))
@@ -60,7 +59,7 @@ def create_player():
 
     print("\nCreate a New Player")
     use_random = input("Generate a random player? (yes/no): ").strip().lower()
-    # The process of making a character, this allwos you to generate a random character with info
+    #The process of making a player, this allwos you to generate a random player with info
     if use_random == "yes":
         name = fake.name()
         description = fake.sentence()
@@ -68,140 +67,99 @@ def create_player():
         strength = random.randint(5, 50)
         defense = random.randint(5, 50)
         speed = random.randint(1, 20)
-    else: # The other option allows you to create your character with a name, description, health points, strength, defense, and speed
+    else: #The other option allows you to create your player with a name, description, health points, strength, defense, and speed
         name = input("Enter player name: ").strip()
         description = input("Enter player description: ").strip()
         health = get_valid_input("Enter Health (50-200): ", 50, 200)
         strength = get_valid_input("Enter Strength (5-50): ", 5, 50)
         defense = get_valid_input("Enter Defense (5-50): ", 5, 50)
         speed = get_valid_input("Enter Speed (1-20): ", 1, 20)
-    # Level and experience cannot be changed by user input
-    level = 1   # All characters start with level 1 and 0 experience
+    #Level and experience cannot be changed by user input
+    level = 1   # All players start with level 1 and 0 experience
     experience = 0
 
-    # Saves the players info
+    #Saves player info
     player = [name, description, health, strength, defense, speed, level, experience]
     save_player(player)
     print(f"Player '{name}' created successfully!")
 
-def save_player(player): # Every new player is saved onto a csv file
-    
-    #Saves a player to the CSV file without overwriting existing ones.
-    file_exists = os.path.isfile(CHARACTER_FILE)
-    
-    with open(CHARACTER_FILE, "a", newline="") as file:
+def save_player(player):
+    # Saves a player to the CSV file.
+    file_exists = os.path.isfile(PLAYER_FILE) #Appends on the existing player file
+    with open(PLAYER_FILE, "a", newline="") as file:
         writer = csv.writer(file)
-        if not file_exists:
+        if not file_exists: 
             writer.writerow(["Name", "Description", "Health", "Strength", "Defense", "Speed", "Level", "Experience"])
         writer.writerow(player)
 
-def load_players(): # Saved players can be loaded to be viewed or brought to battle
+def load_players():
+    # Loads players from the CSV file into a Pandas DataFrame.
+    if not os.path.isfile(PLAYER_FILE):
+        print("No players found. Create a players first.")
+        return pd.DataFrame()
     
-    #Loads players from the CSV file, ensuring correct data format.
-    if not os.path.isfile(CHARACTER_FILE):
-        return []
-    
-    players = []
-    with open(CHARACTER_FILE, "r", newline="") as file:
-        reader = csv.reader(file)
-        headers = next(reader, None)  # Read headers and ignore them in data
-        for row in reader:
-            if len(row) == 7:
-                players.append(row)
-    
-    return players
+    return pd.read_csv(PLAYER_FILE)
 
-def display_players(): # When loaded, players can be displayed
-
+def display_players():
     #Displays all saved players.
-    players = load_players()
-    if not players:
-        print("No players found. Create one first.")
-        return
-
-    print("\nSaved Players:")
-    for char in players:
-        print(f"Name: {char[0]}, Health: {char[1]}, Strength: {char[2]}, Defense: {char[3]}, Speed: {char[4]}, Level: {char[5]}, XP: {char[6]}")
-
-def rand_player_gen():
-    
-    print("\nThis does nothing right now.")
-
-
-def player_analysis():
-
-    #Performs statistical analysis on character attributes.
     df = load_players()
     if df.empty:
         return
 
-    print("\nCharacter Statistics:")
-    stats = df[["Health", "Strength", "Defense", "Speed"]].describe()
-    print(stats)
+    print("\nSaved players:")
+    print(df[["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"]].to_string(index=False))
 
-
-def player_visualization():
-
-    print("\nThere is nothing here at the moment.")
-
-
-def battle_system(): # Players can fight each other if they are saved and loaded
-    
-    #Manages turn-based battles where players choose actions.
+def battle_system():
+    #Manages turn-based battles between two players.
     players = load_players()
     if len(players) < 2:
         print("Not enough players to start a battle. Create at least two.")
         return
 
+    #Allow a player to select two characters
     print("\nSelect two players for battle:")
-    for i, char in enumerate(players):
-        print(f"{i+1}. {char[0]}")
-    #You must have at least two player to fight, and the fight is all turn based
+    for i, user in enumerate(players):
+        print(f"{i+1}. {user[0]}")
+
     try:
         p1_index = int(input("Select first player (number): ")) - 1
         p2_index = int(input("Select second player (number): ")) - 1
         if p1_index == p2_index or not (0 <= p1_index < len(players)) or not (0 <= p2_index < len(players)):
-            print("Invalid selection. Please choose two different players.")
+            print("Invalid selection. Please choose two different characters.")
             return
     except ValueError:
         print("Invalid input. Please enter a number.")
         return
 
-    player1 = players[p1_index]
-    player2 = players[p2_index]
-    #All turn based code
-    player1 = {key: int(value) if key not in ["Name"] else value for key, value in zip(
-        ["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"], player1)}
-    player2 = {key: int(value) if key not in ["Name"] else value for key, value in zip(
-        ["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"], player2)}
+    #Convert selected players to dictionaries for easier manipulation
+    player1 = {key: int(value) if key not in ["Name"] else value for key, value in zip(["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"], players[p1_index])}
+    player2 = {key: int(value) if key not in ["Name"] else value for key, value in zip(["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"], players[p2_index])}
+
+    #Determine attack order based on speed
+    attacker, defender = (player1, player2) if player1["Speed"] > player2["Speed"] else (player2, player1)
 
     print(f"\n{player1['Name']} VS {player2['Name']} - Battle Start!")
 
-    while player1["Health"] > 0 and player2["Health"] > 0:
-        for attacker, defender in [(player1, player2), (player2, player1)]:
-            print(f"\n{attacker['Name']}'s turn! Choose an action:")
-            print("1. Attack")
-            print("2. Defend")
-            
-            action = input("Enter your choice: ").strip()
-            if action == "1":
-                damage = max(1, attacker["Strength"] - defender["Defense"] // 2)
-                defender["Health"] = max(0, defender["Health"] - damage)
-                print(f"{attacker['Name']} attacks {defender['Name']} for {damage} damage!")
-            elif action == "2":
-                attacker["Defense"] += 2
-                print(f"{attacker['Name']} braces for impact, increasing defense!")
-            #Winner of the battle is determined if the opponents health reaches zero, winner gains experience and a level up
-            if defender["Health"] == 0:
-                print(f"{attacker['Name']} wins the battle!")
-                attacker["Experience"] += 10
-                level_up(attacker)
-                update_player_stats(player1)
-                update_player_stats(player2)
-                return
+    def battle_round(attacker, defender):
+        #Handles a single attack round.
+        damage = max(1, attacker["Strength"] - defender["Defense"])
+        defender["Health"] = max(0, defender["Health"] - damage)
+        print(f"{attacker['Name']} attacks {defender['Name']} for {damage} damage! {defender['Name']} now has {defender['Health']} HP.")
 
-def level_up(player): # With every level up, the player gains a stat boost
-    
+    while player1["Health"] > 0 and player2["Health"] > 0:
+        battle_round(attacker, defender)
+        if defender["Health"] == 0:
+            print(f"{attacker['Name']} wins the battle!")
+            attacker["Experience"] += 10
+            level_up(attacker)
+            break
+        attacker, defender = defender, attacker  # Swap turns
+
+    #Update a players in the CSV file after battle
+    update_player_stats(player1)
+    update_player_stats(player2)
+
+def level_up(player):
     #Levels up a player if they gain enough experience.
     if player["Experience"] >= player["Level"] * 10:
         player["Level"] += 1
@@ -210,22 +168,90 @@ def level_up(player): # With every level up, the player gains a stat boost
         player["Defense"] += 2
         print(f"{player['Name']} has leveled up to Level {player['Level']}!")
 
-def update_player_stats(player): # Everytime the stats on a player is updated, the new info is saved onto the csv file
-    
-    #Updates an existing players stats in the CSV file after a battle.
+def update_player_stats(player):
+    #Updates the players stats in the CSV file after a battle.
     players = load_players()
-    
-    for i, char in enumerate(players):
-        if char[0] == player["Name"]:  
-            players[i] = [
-                player["Name"], player["Health"], player["Strength"], 
-                player["Defense"], player["Speed"], player["Level"], player["Experience"]
-            ]
-    
-    with open(CHARACTER_FILE, "w", newline="") as file:
+
+    # Locate player in list and update stats
+    for i, user in enumerate(players):
+        if user[0] == player["Name"]:
+            players[i] = [player[key] for key in ["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"]]
+
+    #Write updated data back to CSV file
+    with open(PLAYER_FILE, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["Name", "Health", "Strength", "Defense", "Speed", "Level", "Experience"])
         writer.writerows(players)
+
+def analyze_players():
+    #Performs statistical analysis on a players attributes.
+    df = load_players()
+    if df.empty:
+        return
+
+    print("\nPlayer Statistics:")
+    stats = df[["Health", "Strength", "Defense", "Speed"]].describe()
+    print(stats)
+
+def player_visualization():
+    #Visualizes player stats using a bar graph or radar chart.
+    df = load_players()
+    if df.empty:
+        return
+    
+    print("\nSelect a player to visualize:")
+    for i, name in enumerate(df["Name"], start=1):
+        print(f"{i}. {name}")
+
+    try: #Can select a player by inputting numbers
+        choice = int(input("Enter the player number: ")) - 1
+        if choice < 0 or choice >= len(df):
+            print("Invalid choice.") #Error message
+            return
+    except ValueError: #Error message
+        print("Invalid input.")
+        return
+
+    #Chart that displays health, strength, defense, and speed
+    user = df.iloc[choice]
+    stats = ["Health", "Strength", "Defense", "Speed"]
+    values = user[stats].values.astype(int)
+
+    print("\nChoose visualization type:")
+    print("1. Bar Graph")
+    print("2. Radar Chart")
+    vis_choice = input("Enter choice: ").strip()
+
+    if vis_choice == "1": #User sees the choice to see players stats and name
+        plot_bar_chart(user["Name"], stats, values)
+    elif vis_choice == "2":
+        plot_radar_chart(user["Name"], stats, values)
+    else:
+        print("Invalid choice.") #Error message
+
+def plot_bar_chart(name, labels, values):
+    #Plots a bar chart for the players stats.
+    plt.figure(figsize=(8, 6))
+    plt.bar(labels, values, color=["red", "blue", "green", "purple"])
+    plt.xlabel("Attributes")
+    plt.ylabel("Value")
+    plt.title(f"{name}'s Stats")
+    plt.show()
+
+def plot_radar_chart(name, labels, values):
+    #Plots a chart for the players stats.
+    angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
+    values = np.concatenate((values, [values[0]]))
+    angles += angles[:1]
+
+    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    ax.fill(angles, values, color="blue", alpha=0.25)
+    ax.plot(angles, values, color="blue", linewidth=2)
+    ax.set_yticklabels([])
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(labels)
+    ax.set_title(f"{name}'s Stats")
+    plt.show()
 
 if __name__ == "__main__":
     main()
