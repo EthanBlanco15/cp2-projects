@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from faker import Faker
 
-PLAYER_FILE = "players.csv"
+PLAYER_FILE = "player.csv"
 fake = Faker()
 
 def main():
