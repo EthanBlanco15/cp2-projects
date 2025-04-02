@@ -1,6 +1,12 @@
 #Ethan Blanco, Personal Portfolio
 
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from InquirerPy import inquirer
+import simple_morse_code_translator.main
 
 args = ["----------Personal Portfolio----------"]
 def main(): #Main user interface
@@ -26,13 +32,13 @@ def main(): #Main user interface
                 print("That's okay too, goodbye!")
                 break
         elif pers_finan_opt == "first":
-            print()
+            simple_morse_code_translator
             continue
         elif pers_finan_opt == "second":
             print()
             continue
         elif pers_finan_opt == "third":
-            print()
+            print("guh")
             continue
         elif pers_finan_opt == "fourth":
             print()
