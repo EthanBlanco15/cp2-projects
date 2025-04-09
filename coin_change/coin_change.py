@@ -19,4 +19,4 @@ def get_min_coins(target, coins):
     if target > 0:
         return None, None  # Change cannot be made with given denominations
 
-    return total_coins, coin_co
+    return total_coins, coin_count
