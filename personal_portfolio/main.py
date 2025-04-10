@@ -6,7 +6,6 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from InquirerPy import inquirer
-import simple_morse_code_translator.main
 
 args = ["----------Personal Portfolio----------"]
 def main(): #Main user interface
@@ -24,15 +23,15 @@ def main(): #Main user interface
             print("This can also act as a resume! Neat right?\n")
             print("The python projects you'll be seeing (in order) are;")
             print("Simple Morse Code Translator, To Do List, Random Password Generator, Movie recommender, Personal Library, and Financial Calculator.\n")
-            proceed = inquirer.text(message="We're going back now! Did you enjoy the short description?").execute()
-            if proceed == "go":
+            proceed = inquirer.text(message="We're going back now! Or did you want to exit? (Y/N to exit)").execute()
+            if proceed == "no" or "No" or "N":
                 print("Okay! Back to the menu then!")
                 continue
-            elif proceed == "exit":
+            elif proceed == "yes" or "Yes" or "Y":
                 print("That's okay too, goodbye!")
                 break
         elif pers_finan_opt == "first":
-            simple_morse_code_translator
+            print("")
             continue
         elif pers_finan_opt == "second":
             print()
