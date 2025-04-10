@@ -24,10 +24,10 @@ def main(): #Main user interface
             print("The python projects you'll be seeing (in order) are;")
             print("Simple Morse Code Translator, To Do List, Random Password Generator, Movie recommender, Personal Library, and Financial Calculator.\n")
             proceed = inquirer.text(message="We're going back now! Or did you want to exit? (Y/N to exit)").execute()
-            if proceed == "no" or "No" or "N":
+            if proceed == "N":
                 print("Okay! Back to the menu then!")
                 continue
-            elif proceed == "yes" or "Yes" or "Y":
+            elif proceed == "Y":
                 print("That's okay too, goodbye!")
                 break
         elif pers_finan_opt == "first":
