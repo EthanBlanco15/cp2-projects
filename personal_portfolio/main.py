@@ -31,8 +31,13 @@ def main(): #Main user interface
                 print("That's okay too, goodbye!")
                 break
         elif pers_finan_opt == "first":
-            print("")
-            continue
+            print("This is the Simple Morse Code Translator, it is a program that allows you to input either English or morse code words and convert it accordingly!")
+            confirmation = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if confirmation == "Y":
+                break
+            elif confirmation == "N":
+                print("Okay! I'll send you back to the starting interface.")
+                continue
         elif pers_finan_opt == "second":
             print()
             continue
