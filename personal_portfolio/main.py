@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from InquirerPy import inquirer
 
-args = ["----------Personal Portfolio----------"]
+args = ["----------Personal Portfolio----------"] #First text
 def main(): #Main user interface
     while True:
         print(args[0])
