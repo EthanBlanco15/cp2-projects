@@ -39,22 +39,47 @@ def main(): #Main user interface
                 print("Okay! I'll send you back to the starting interface.")
                 continue
         elif pers_finan_opt == "second":
-            print()
-            continue
+            print("This is the To Do List, it is a program that allows a user to add, remove, and check things from a list, like having computer post-it notes!")
+            continuation = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if continuation == "Y":
+                break
+            elif continuation == "N":
+                print("No problem! Sending you back to the starting interface.")
+                continue
         elif pers_finan_opt == "third":
-            print("guh")
-            continue
+            print("This is the Random Password Generator, it is a program that produces random passwords that fit the users requirements and needs.")
+            follow_up = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if follow_up == "Y":
+                break
+            elif follow_up == "N":
+                print("That's all right! Sending you back to the starting interface.")
+                continue
         elif pers_finan_opt == "fourth":
-            print()
-            continue
+            print("This is the Movie Recommender, it allows a user to search movies in a CSV file and suggests a movie based on their inputs.")
+            question = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if question == "Y":
+                break
+            elif question == "N":
+                print("Thank you for your time! Sending you back to the starting interface.")
+                continue
         elif pers_finan_opt == "fifth":
-            print()
-            continue
+            print("This is the Personal Library, it's a program that lets a user add, remove, search, and see the full library of books stored into a CSV file.")
+            go = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if go == "Y":
+                break
+            elif go == "N":
+                print("Great! Sending you back to the starting interface.")
+                continue
         elif pers_finan_opt == "sixth":
-            print()
-            continue
+            print("This is the Financial Calculator, it is a program that allows the user to, as the name implies, use a financial calculator for things such as budgetting.")
+            now = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
+            if now == "Y":
+                break
+            elif now == "N":
+                print("Ok, come back soon! Sending you back to the starting interface.")
+                continue
         elif pers_finan_opt == "personal":
-            print()
+            print("This isn't a program, but for a better user experience! Here, you can edit your text color or see other things!")
             continue
         elif pers_finan_opt == "exit":
             print("Goodbye!")
