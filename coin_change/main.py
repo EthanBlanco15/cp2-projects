@@ -9,7 +9,6 @@ def main():
     
     while True: # User must input a country listed
         country = input("Enter the country (USA, UK, Canada, Euro): ").strip()
-        print(f"selected country is : {country}")
         coins = load_coins(country)
 
         if coins:
