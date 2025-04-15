@@ -4,9 +4,10 @@ def load_coins(country):
     # Loads coin denominations from coins.csv for a given country
     try:
         # Opens csv file in read mode
-        with open("coin_change\coin_change.py", "r") as file:
+        with open("coin_change/coins.csv", "r") as file:
             reader = csv.reader(file)
             for row in reader:
+                print(f"testing: {row}")
                 # csv format 
                 if row[0].strip().lower() == country.lower():
                     coins = [item.split("-") for item in row[1:]]
