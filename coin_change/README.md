@@ -27,6 +27,6 @@ Provides detailed error handling for missing files and invalid inputs.
 Allows users to retry if an input error occurs.
 Outputs a clear breakdown of coins used.
 Contributors
-Ucas-EthanB, made the program
+EthanBlanco15, made the program
 Author's info
 Ethan Blanco, UCAS student in the United States of America Utah, a semester and a half of experience in programming.
