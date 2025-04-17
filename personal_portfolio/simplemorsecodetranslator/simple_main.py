@@ -57,7 +57,7 @@ def english_translator():
     print("\nHere is your English translation:")
     print(english_translation)
 
-def main():
+def morse_main():
 
 #Main function that allows users to choose different translation options.
     menu_options = {
@@ -86,4 +86,4 @@ def main():
 
 # Run the program
 if __name__ == "__main__":
-    main()
+    morse_main()

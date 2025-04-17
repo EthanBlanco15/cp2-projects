@@ -9,10 +9,9 @@ from financialcalculator import finance_main
 
 from InquirerPy import inquirer
 
-args = ["----------Personal Portfolio----------"] #First text
 def main(): #Main user interface
     while True:
-        print(args[0])
+        print("----------Personal Portfolio----------")
         print("Welcome User.") #Repeats the username with a welcome message.
         pers_finan_opt = inquirer.select( #Main prompt
             message="What would you like to do or know?:", #Questions
