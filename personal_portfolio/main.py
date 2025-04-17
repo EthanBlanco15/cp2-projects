@@ -2,6 +2,7 @@
 
 import os
 import sys
+from simplemorsecodetranslator import simple_main
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -34,7 +35,9 @@ def main(): #Main user interface
             print("This is the Simple Morse Code Translator, it is a program that allows you to input either English or morse code words and convert it accordingly!")
             confirmation = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if confirmation == "Y": #Goes into the separate code.
-                break
+                print("Is this working?")
+                simple_main
+                print("Are you sure?")
             elif confirmation == "N": #Sends the user back to main.
                 print("Okay! I'll send you back to the starting interface.")
                 continue
