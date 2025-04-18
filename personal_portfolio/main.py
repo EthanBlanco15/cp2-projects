@@ -23,7 +23,7 @@ def main(): #Main user interface
             print("This can also act as a resume! Neat right?\n")
             print("The python projects you'll be seeing (in order) are;")
             print("Simple Morse Code Translator, To Do List, Random Password Generator, Movie recommender, Personal Library, and Financial Calculator.\n")
-            proceed = inquirer.text(message="We're going back now! Or did you want to exit? (Y/N to exit)").upper().execute()
+            proceed = inquirer.text(message="We're going back now! Or did you want to exit? (Y/N to exit)").execute()
             if proceed == "N":
                 print("Okay! Back to the menu then!")
                 continue
@@ -82,4 +82,6 @@ def main(): #Main user interface
             print("Goodbye!")
             break
 
-main()
+
+if __name__ == "__main__":
+    main()
