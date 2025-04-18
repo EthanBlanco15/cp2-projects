@@ -82,6 +82,4 @@ def main(): #Main user interface
             print("Goodbye!")
             break
 
-
-if __name__ == "__main__":
-    main()
+main()
