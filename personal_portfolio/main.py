@@ -15,7 +15,7 @@ def main(): #Main user interface
         print("Welcome User.") #Repeats the username with a welcome message.
         pers_finan_opt = inquirer.select( #Main prompt
             message="What would you like to do or know?:", #Questions
-            choices= ["What is this portfolio about?", "First Project", "Second Project", "Third Project", "Fourth Project", "Fifth Project", "Sixth Project", "Exit"],
+            choices= ["What is this portfolio about?", "Simple Morse Code Translator", "To Do List", "Random Password Generator", "Movie recommender", "Personal Library", "Financial Calculator", "Exit"],
                 filter=lambda result: result.split()[0].lower() #Allows the user to be able to input their response correctly.
         ).execute()
         if pers_finan_opt == "what": #Different choices that go into the different functions.
@@ -54,7 +54,7 @@ def main(): #Main user interface
             elif follow_up == "N": #Sends the user back to main.
                 print("That's all right! Sending you back to the starting interface.")
                 continue
-        elif pers_finan_opt == "fourth": #Is the fourth program.
+        elif pers_finan_opt == "Movie": #Is the fourth program.
             print("This is the Movie Recommender, it allows a user to search movies in a CSV file and suggests a movie based on their inputs.")
             question = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if question == "Y": #Goes into the separate imported code.
@@ -62,7 +62,7 @@ def main(): #Main user interface
             elif question == "N": #Sends the user back to main.
                 print("Thank you for your time! Sending you back to the starting interface.")
                 continue
-        elif pers_finan_opt == "fifth": #Is the fifth program.
+        elif pers_finan_opt == "Personal": #Is the fifth program.
             print("This is the Personal Library, it's a program that lets a user add, remove, search, and see the full library of books stored into a CSV file.")
             go = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if go == "Y": #Goes into the separate imported code.
@@ -70,7 +70,7 @@ def main(): #Main user interface
             elif go == "N": #Sends the user back to main.
                 print("Great! Sending you back to the starting interface.")
                 continue
-        elif pers_finan_opt == "sixth": #Is the sixth program.
+        elif pers_finan_opt == "Financial": #Is the sixth program.
             print("This is the Financial Calculator, it is a program that allows the user to, as the name implies, use a financial calculator for things such as budgetting.")
             now = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if now == "Y": #Goes into the separate imported code.
