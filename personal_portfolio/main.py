@@ -30,7 +30,7 @@ def main(): #Main user interface
             elif proceed == "Y":
                 print("That's okay too, goodbye!")
                 break
-        elif pers_finan_opt == "first": #Is the first program
+        elif pers_finan_opt == "Simple": #Is the first program
             print("This is the Simple Morse Code Translator, it is a program that allows you to input either English or morse code words and convert it accordingly!")
             confirmation = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if confirmation == "Y": #Goes into the separate code.
@@ -38,7 +38,7 @@ def main(): #Main user interface
             elif confirmation == "N": #Sends the user back to main.
                 print("Okay! I'll send you back to the starting interface.")
                 continue
-        elif pers_finan_opt == "second": #Is the second program.
+        elif pers_finan_opt == "To": #Is the second program.
             print("This is the To Do List, it is a program that allows a user to add, remove, and check things from a list, like having computer post-it notes!")
             continuation = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if continuation == "Y": #Goes into the separate imported code.
@@ -46,7 +46,7 @@ def main(): #Main user interface
             elif continuation == "N": #Sends the user back to main.
                 print("No problem! Sending you back to the starting interface.")
                 continue
-        elif pers_finan_opt == "third": #Is the third program
+        elif pers_finan_opt == "Random": #Is the third program
             print("This is the Random Password Generator, it is a program that produces random passwords that fit the users requirements and needs.")
             follow_up = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if follow_up == "Y": #Goes into the separate imported code.
