@@ -2,7 +2,7 @@
 
 from simplemorsecodetranslator import simple_main
 from todolist import todo_main
-from randompasswordgen import random_main
+from randompasswordgen import ran_main
 from movierecommender import movie_main
 from personallibrary import pers_main
 from financialcalculator import finance_main
@@ -50,7 +50,8 @@ def main(): #Main user interface
             print("This is the Random Password Generator, it is a program that produces random passwords that fit the users requirements and needs.")
             follow_up = inquirer.text(message="Would you like to try the program out? (Y/N to select)").execute()
             if follow_up == "Y": #Goes into the separate imported code.
-                random_main.gen_main()
+                break
+                #ran_main.gen_main()
             elif follow_up == "N": #Sends the user back to main.
                 print("That's all right! Sending you back to the starting interface.")
                 continue
