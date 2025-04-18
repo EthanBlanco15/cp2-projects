@@ -84,4 +84,5 @@ def gen_main():
         except ValueError as error:
             print(error)
 
-gen_main()
+if __name__ == "__main__":
+    gen_main()

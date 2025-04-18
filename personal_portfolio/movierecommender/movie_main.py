@@ -77,4 +77,5 @@ def rec_main():
         else:
             print("Invalid option. Please choose again.")
 #Run the program
-rec_main()
+if __name__ == "__main__":
+    rec_main()
