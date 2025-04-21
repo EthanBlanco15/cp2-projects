@@ -2,56 +2,38 @@
 
 ## Project Description
 ---
-This is where my paragraph describing the project belongs  
+This program has six different python programs that are created with their own individual unique code. It utilizes an InquirerPy pip install to enhance the user interface and create a better experience for the user. This is a personal portfolio that has a background information function and 6 other fun as well as useful functions created in the same repository.
 
 ## Installation
 ---
-1. instruction one
-2. instruction two
-3. instruction three  
+1. Clone the repository or open the folder
+2. Ensure you have Python installed
+3. Install necessary extensions
 
 ## Execution and Usage
 ---
-Short Paragraph here maybe a bulletted list
 
-+ list item one
-+ list item two
-+ list item three
++ Select any one of the projects or information function.
++ Go through the function.
++ Try out the other options.
 
 ## Used Technologies
 ---
-+ Name of tech - what it does in the project
-`pip install instructions`
-+ Name of tech - what it does in the project
-`pip install instructions`
-+ Name of tech - what it does in the project
-`pip install instructions`  
++ InquirerPy - Customizes the user interface into a fancier format that can be controlled with arrow keys.
+`pip install InquirerPy`
++ from Module import Function - Allows the program to grab different functions from the separate programs.
+`uses a callback function.`
 
 ## Current Features
 ---
-+ List of cool things your project does
-+ List of cool things your project does
-+ List of cool things your project does  
-
-## Contributing
----
-Do not add to this section  
++ This program uses a Python pip install called InquirerPy that utilizes the user interface into something more fancy.
++ Here, you can try out different projects all in one program.  
 
 ## Contribut0rs
 ---
-+ List of people who helped and what they did
-+ List of people who helped and what they did
-+ List of people who helped and what they did  
++ Ethan Blanco, made the entire program.
 
 ## Author's info
 ---
-Short paragraph about you (each person in a group project)
-How to contact you if you want that available  
-
-## Change Log
----
-Do not add to this section  
-
-## License
----
-Do not add to this section
+EthanBlanco15 (GitHub account)
+ethan.blanco@ucas-edu.net (school email)
