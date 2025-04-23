@@ -26,7 +26,7 @@ def main(): #Main user interface
                 print("That's okay too, goodbye!")
                 break
         elif pers_finan_opt == 1: #Is the first program
-            print("This is the Simple Morse Code Translator, it is a program that allows you to input either English or morse code words and convert it accordingly!")
+            print("This is the Simple Morse Code Translator, it is a program that allows you to input either English or morse code words and convert it accordingly! You'll be given two choices to translate into, morse code into English or English to morse code, as well as the morse code alphabet in English will be given.")
             confirmation = int(input("Would you like to try the program out? (1 to select, 2 to return)"))
             if confirmation == 1: #Goes into the separate code.
                 simple_main.morse_main()
@@ -42,7 +42,7 @@ def main(): #Main user interface
                 print("No problem! Sending you back to the starting interface.")
                 continue
         elif pers_finan_opt == 3: #Is the third program
-            print("This is the Random Password Generator, it is a program that produces random passwords that fit the users requirements and needs.")
+            print("This is the Random Password Generator, it is a program that produces random passwords that fit the users requirements and needs while also grading on how weak or powerful that password is.")
             follow_up = int(input("Would you like to try the program out? (1 to select, 2 to return)"))
             if follow_up == 1: #Goes into the separate imported code.
                 ran_main.gen_main()
@@ -50,7 +50,7 @@ def main(): #Main user interface
                 print("That's all right! Sending you back to the starting interface.")
                 continue
         elif pers_finan_opt == 4: #Is the fourth program.
-            print("This is the Movie Recommender, it allows a user to search movies in a CSV file and suggests a movie based on their inputs.")
+            print("This is the Movie Recommender, it allows a user to search movies in a CSV file and suggests a movie based on their specific inputs.")
             question = int(input("Would you like to try the program out? (1 to select, 2 to return)"))
             if question == 1: #Goes into the separate imported code.
                 movie_main.rec_main()
@@ -58,7 +58,7 @@ def main(): #Main user interface
                 print("Thank you for your time! Sending you back to the starting interface.")
                 continue
         elif pers_finan_opt == 5: #Is the fifth program.
-            print("This is the Personal Library, it's a program that lets a user add, remove, search, and see the full library of books stored into a CSV file.")
+            print("This is the Personal Library, it's a program that lets a user add, remove, search, and see the full library of books stored onto a CSV file. There are already books and examples given out for the user to start with.")
             go = int(input("Would you like to try the program out? (1 to select, 2 to return)"))
             if go == 1: #Goes into the separate imported code.
                 pers_main.lib_main()
@@ -66,7 +66,7 @@ def main(): #Main user interface
                 print("Great! Sending you back to the starting interface.")
                 continue
         elif pers_finan_opt == 6: #Is the sixth program.
-            print("This is the Financial Calculator, it is a program that allows the user to, as the name implies, use a financial calculator for things such as budgetting.")
+            print("This is the Financial Calculator, it is a program that allows the user to, as the name implies, use a financial calculator to help with complex problems for things such as budgetting, saving, and accounting.")
             now = int(input("Would you like to try the program out? (1 to select, 2 to return)"))
             if now == 1: #Goes into the separate imported code.
                 finance_main.fin_main()
