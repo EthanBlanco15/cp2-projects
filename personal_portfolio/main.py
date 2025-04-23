@@ -7,8 +7,6 @@ from movierecommender import movie_main
 from personallibrary import pers_main
 from financialcalculator import finance_main
 
-from InquirerPy import inquirer
-
 def main(): #Main user interface
     while True:
         print("----------Personal Portfolio----------")
