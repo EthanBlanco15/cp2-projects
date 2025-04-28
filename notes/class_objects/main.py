@@ -1,7 +1,5 @@
 #Classes and Objects notes
 
-# What is a class in Python?
-# -- A class is a blueprint for creating an object.
 class pokemon:
     def __init__(self, name, species, hp, dmg):
         self.name = name
@@ -32,6 +30,9 @@ print(bob.name)
 print(fluffy.species)
 
 bob.battle(fluffy)
+
+# What is a class in Python?
+# -- A class is a blueprint for creating an object.
 
 # What is an object in python?
 # -- An object is a specific instance of a class.
